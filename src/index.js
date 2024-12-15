@@ -1,4 +1,4 @@
-console.log("%cactively running on php 🐘", "color: #fd0; font-size: 32pt; font-weight: 800; font-family: monospace;")
+console.log("%cthere is no wasp emoji 😢 🐝", "color: #fd0; font-size: 32pt; font-weight: 800; font-family: monospace;")
 
 let tabs = document.getElementsByClassName("tab");
 let page = document.getElementById("page");
@@ -46,7 +46,7 @@ historyTab.addEventListener("click", async function () {
     
     let commits = await getCommits(currentPage);
 
-    historyPage.innerHTML = "";
+    historyPage.innerHTML = "<p>If you're not seeing commits, there's a high chance you're being rate limited. Try again later. (fix tbd)</p>";
 
     commits.forEach(commit => {
         let element = document.createElement("p");
@@ -71,7 +71,6 @@ async function setPage(file) {
 
     switch (metadata.type) {
         case "no-title":
-            console.log("balls");
             document.body.className = "no-title";
             break;
         default:
@@ -80,4 +79,20 @@ async function setPage(file) {
     };
 };
 
-setPage(currentPage);
+function loadPageFromHash() {
+    fallbackHash();
+    currentPage = window.location.hash.replace("#","") + ".md";
+    setPage(currentPage);
+};
+
+function fallbackHash() {
+    switch (window.location.hash) {
+        case "":
+        case "#":
+        case "#/":
+            window.location.hash = "/wiki/Main_Page"
+    };
+};
+
+window.onhashchange = loadPageFromHash;
+window.onload = loadPageFromHash;

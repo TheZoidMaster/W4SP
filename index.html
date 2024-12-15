@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="src/markdown.css">
     <link rel="stylesheet" href="src/page_types.css">
+    <script src="src/page_link.js"></script>
 </head>
 <body>
     <!-- <img src="/important/reuben.gif"> fun fact: this is actually on the dph wiki (https://datapack.wiki/important/reuben.gif)
@@ -14,17 +15,17 @@
     <div id="side" class="panel">
         <span class="logo">
             <img src="img/wasp.png" draggable="false">
-            <img src="img/wasp_text.png" draggable="false">
+            <img src="img/wasp_text.png" draggable="false" alt="W4SP">
         </span>
         <hr>
         <p>
             <b>Main menu</b>
             <ul>
-                <li><a>Main page</a></li>
+                <li><page-link href="/wiki/Main_Page">Main page</page-link></li>
                 <li><a>Contents</a></li>
                 <li><a>Contact us</a></li>
             </ul>
-        </p>
+        </p><!--
         <hr>
         <p>
             <b>Contribute</b>
@@ -33,7 +34,7 @@
                 <li><a>Recent changes</a></li>
                 <li><a>Upload file</a></li>
             </ul>
-        </p>
+        </p> -->
         <hr>
         <p>
         get therapy 👈👈👈👈
@@ -44,21 +45,18 @@
             <li>actually nevermind, nexulien will just give you more mental health issues ^-^</li>
         </ul>
         <hr>
-        <p><a href="https://github.com/JaegerwaldDev/W4SP">W4SP GitHub</a> • <a href="https://github.com/JaegerwaldDev/W4SP">Documentation <!-- get lied to, idiot--></a></p>
+        <p><a href="https://github.com/JaegerwaldDev/W4SP">W4SP GitHub</a> • <a href="https://github.com/JaegerwaldDev/W4SP">Documentation</a></p>
         </p>
         <hr>
         <p>Don't like this theme? Don't worry - you can make W4SP your own! Just specify a custom theme stylesheet in the config and you can change stuff to your heart's content!</p>
-        <hr>
-        <!-- average jae crash out -->
-        test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>
-    </div>
+        </div>
     <div id="head" class="panel">
         <span id="search">
             <input placeholder="Search..."></input>
             <button>Search</button>
         </span>
     </div>
-    <div id="nav" class="panel"> <!-- breadcrumbs my beloved -->
+    <div id="nav" class="panel">
         <h1 id="title"></h1>
         <hr>
         <button class="tab" id="tabHistory">Commit History</button>
@@ -71,6 +69,7 @@
             <pre><code id="markdownRaw"></code></pre>
         </div>
         <div class="page" id="pageHistory"></div>
+        <div id="footer"><span class="version">v1.0.0-alpha.1</span><span class="right">Created with <a href="https://github.com/JaegerwaldDev/W4SP"><img src="img/wasp_compact.png" style="vertical-align: middle;" height="16px" alt="W4SP"></a></span></div>
     </div>
     <script src="src/marked.min.js"></script>
     <script src="src/api.js"></script>

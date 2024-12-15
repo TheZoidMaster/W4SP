@@ -112,10 +112,13 @@ html {
 #page {
     grid-column: 2;
     grid-row: 3;
+    height: min-content;
 }
 
-a {
+a, page-link {
     color: var(--clr-accent);
+    text-decoration: underline;
+    cursor: pointer;
 }
 hr {
     border-top-color: var(--clr-dark-1);
@@ -165,4 +168,19 @@ button {
 }
 .page.active {
     display: block;
+}
+
+#footer {
+    padding: 16px;
+    background-color: var(--clr-dark-1);
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-bottom: -16px;
+    padding-bottom: 20px;
+}
+#footer > span.right {
+    float: right;
+}
+.version {
+    color: var(--clr-dark-4);
 }

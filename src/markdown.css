@@ -18,6 +18,7 @@ table td {
 }
 table {
     border-collapse: collapse;
+    margin: 16px;
 }
 
 pre {
