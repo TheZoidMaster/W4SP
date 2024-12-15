@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>W4SP</title>
     <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/markdown.css">
+    <link rel="stylesheet" href="src/page_types.css">
 </head>
 <body>
     <!-- <img src="/important/reuben.gif"> fun fact: this is actually on the dph wiki (https://datapack.wiki/important/reuben.gif)
@@ -57,13 +59,22 @@
         </span>
     </div>
     <div id="nav" class="panel"> <!-- breadcrumbs my beloved -->
-        <h1>we suffer together 🤝</h1>
+        <h1 id="title"></h1>
         <hr>
-        <button class="tab">Commit History</button>
-        <button class="tab">Source</button>
-        <button class="tab active">Read</button>
+        <button class="tab" id="tabHistory">Commit History</button>
+        <button class="tab" id="tabSource">Source</button>
+        <button class="tab active" id="tabRead">Read</button>
     </div>
-    <div id="page" class="panel"></div>
+    <div id="page" class="panel">
+        <div class="page active" id="pageRead"></div>
+        <div class="page" id="pageSource">
+            <pre><code id="markdownRaw"></code></pre>
+        </div>
+        <div class="page" id="pageHistory"></div>
+    </div>
+    <script src="src/marked.min.js"></script>
+    <script src="src/api.js"></script>
+    <script src="src/github_api.js"></script>
     <script src="src/index.js"></script>
 </body>
 </html>

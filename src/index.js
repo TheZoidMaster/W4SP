@@ -1,12 +1,27 @@
 console.log("%cactively running on php 🐘", "color: #fd0; font-size: 32pt; font-weight: 800; font-family: monospace;")
 
 let tabs = document.getElementsByClassName("tab");
+let page = document.getElementById("page");
+let pages = document.getElementsByClassName("page");
+let title = document.getElementById("title");
 
-function iterrHtml(htmlCollection, iterrateFunc) {
-    for (let i=0; i<htmlCollection.length; i++) {
-        iterrateFunc(htmlCollection[i]);
-    }
+let readTab = document.getElementById("tabRead");
+let sourceTab = document.getElementById("tabSource");
+let historyTab = document.getElementById("tabHistory");
+
+let readPage = document.getElementById("pageRead");
+let sourcePage = document.getElementById("pageSource");
+let historyPage = document.getElementById("pageHistory");
+
+let markdownRaw = document.getElementById("markdownRaw");
+
+function hidePages() {
+    iterrHtml(pages, function (element) {
+        element.className = "page";
+    });
 };
+
+let currentPage = "wiki/Main_Page.md"
 
 iterrHtml(tabs, function (element) {
     element.addEventListener("click", function() {
@@ -16,3 +31,53 @@ iterrHtml(tabs, function (element) {
         element.className = "tab active";
     });
 });
+
+readTab.addEventListener("click", function () {
+    hidePages();
+    readPage.className = "page active";
+});
+sourceTab.addEventListener("click", function () {
+    hidePages();
+    sourcePage.className = "page active";
+});
+historyTab.addEventListener("click", async function () {
+    hidePages();
+    historyPage.className = "page active";
+    
+    let commits = await getCommits(currentPage);
+
+    historyPage.innerHTML = "";
+
+    commits.forEach(commit => {
+        let element = document.createElement("p");
+        element.class = "commit";
+        element.innerHTML = `${new Date(commit.date).toLocaleString(undefined, {timeZoneName: "short"})} | <a href="https://github.com/${owner}/${repo}/commit/${commit.sha}">${commit.message}</a> - ${commit.author}`;
+
+        historyPage.appendChild(element);
+    });
+});
+
+async function setPage(file) {
+    let markdown = await getMarkdown(file);
+    readPage.innerHTML = markdown.html;
+    markdownRaw.innerText = markdown.raw;
+
+    currentPage = file;
+
+    let metadata = toObject(markdown.meta)
+
+    document.title = metadata.title;
+    title.innerText = metadata.title;
+
+    switch (metadata.type) {
+        case "no-title":
+            console.log("balls");
+            document.body.className = "no-title";
+            break;
+        default:
+            document.body.removeAttribute("class");
+            break;
+    };
+};
+
+setPage(currentPage);

@@ -11,6 +11,7 @@
     --clr-dark-8: #888;
     --clr-dark-9: #999;
     --clr-accent: #fd0;
+    --clr-accent-2: #fd08;
 
     scrollbar-color: var(--clr-dark-3) var(--clr-dark-2);
 }
@@ -24,7 +25,7 @@ body {
 
     margin: 0px;
     min-height: 100vh;
-    width: var(100vw - 16px);
+    width: auto;
 
     color: white;
     font-family: monospace;
@@ -32,6 +33,7 @@ body {
     accent-color: var(--clr-accent);
 
     gap: 1px;
+    max-width: 100vw;
 }
 html {
     background-color: var(--clr-dark-1)
@@ -69,8 +71,8 @@ html {
     grid-column: 2;
     grid-row: 2;
 
-    height: 88px;
-    padding-bottom: 8px;
+    height: auto;
+    padding-bottom: 0px;
 }
 #nav h1 {
     margin: 0px;
@@ -78,32 +80,23 @@ html {
 }
 #nav .tab {
     float: right;
-    margin-left: 16px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    padding: 0px;
+    padding: 8px;
     border: none;
     background-color: transparent;
     color: white;
 }
-#nav .tab::after {
-    content: "";
-    height: 1px;
-    margin-top: 11px;
-    z-index: 20;
+#nav .tab:hover {
+    border-bottom: 1px var(--clr-accent-2) solid;
 }
-#nav .tab:hover::after {
-    background-color: var(--clr-accent);
-    opacity: 0.5;
-}
-#nav .tab.active::after {
-    background-color: var(--clr-accent);
-    opacity: 1;
+#nav .tab.active {
+    border-bottom: 1px var(--clr-accent) solid;
 }
 #nav hr {
-    margin-top: calc(6.5px + 8px);
-    margin-bottom: calc(6.5px + 4px);
+    margin-top: 14.5px;
+    margin-bottom: 0px;
 }
 
 #search {
@@ -160,4 +153,16 @@ button {
     color: var(--clr-dark-9);
     font-weight: bold;
     cursor: pointer;
+}
+
+.page {
+    display: none;
+    padding: 0px;
+    margin: 0px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+.page.active {
+    display: block;
 }
