@@ -1,4 +1,4 @@
 # W4SP
-Low-depency MediaWiki alternative
+Low-depency static MediaWiki alternative
 
 <sub>zoid was here</sub>
