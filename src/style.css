@@ -1,0 +1,92 @@
+:root {
+    scroll-behavior: smooth; /* smooth scroll when you click <a href="#shit"> */
+
+    --clr-dark-1: #111;
+    --clr-dark-2: #222;
+    --clr-dark-3: #333;
+    --clr-dark-4: #444;
+    --clr-dark-5: #555;
+    --clr-dark-6: #666;
+    --clr-accent: #fd0;
+}
+
+body {
+    user-select: none; /* :grr: */
+    
+    display: grid; /* grid my beloved */
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 1fr;
+
+    margin: 0px;
+    height: 100vh;
+    width: 100vw;
+
+    color: white;
+    font-family: monospace;
+
+    accent-color: var(--clr-accent);
+
+    gap: 1px;
+}
+html {
+    background-color: var(--clr-dark-1)
+}
+.panel {
+    background-color: var(--clr-dark-2);
+    border-top: 1px var(--clr-dark-3) solid;
+    user-select: text;
+
+    /* the urge to make yall use rem but im too lazy */
+    padding: 16px;
+}
+.logo {
+    user-select: none;
+}
+
+#side {
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: 4;
+
+    width: 256px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#side::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+#head {
+    grid-column: 2;
+    grid-row: 1;
+
+    height: 32px;
+}
+#nav {
+    grid-column: 2;
+    grid-row: 2;
+
+    height: 16px;
+}
+#page {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+a {
+    color: var(--clr-accent);
+}
+hr {
+    border-top-color: var(--clr-dark-1);
+    border-bottom-color: var(--clr-dark-3);
+    border-style: solid;
+    border-width: 1px;
+    border-left: none;
+    border-right: none;
+}
+
+*::selection {
+    background-color: var(--clr-accent);
+    color: black;
+}
