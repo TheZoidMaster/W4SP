@@ -18,6 +18,7 @@ This demo is built specifically around showcasing what W4SP is able to do! We'll
 ## List of other Pages that exist right now:
 - <page-link href="/wiki/Markdown_Test">Markdown Test</page-link>
 - <page-link href="/wiki/Playground">Playground</page-link>
+- <page-link href="/wiki/Headerless_File">Headerless File (for debugging)</page-link>
 
 ---
 

@@ -15,12 +15,28 @@ async function getMarkdown(url) {
     .then(data => {
         result.raw = data;
 
-        data = data.split("---");
-        result.meta = data[1];
+        if (data.startsWith("---")) {
+            data = data.split("---");
+            result.meta = toObject(data[1].trim());
+    
+            if (!("title" in result.meta)) {
+                result.meta.title = "Unkown Page (No Title)";
+            };
+            if (!("type" in result.meta)) {
+                result.meta.type = "default";
+            };
 
-        data = data.splice(2,data.length);
+            data = data.splice(2,data.length);
+    
+            result.html = marked.parse(data.join("---"));
+        } else {
+            result.meta = {
+                title: "Unkown Page (No Title)",
+                type: "default"
+            };
+            result.html = marked.parse(data);
+        };
 
-        result.html = marked.parse(data.join("---"));
     });
     return result;
 };
@@ -39,7 +55,6 @@ function toObject(string) {
 
         result[line[0]] = line[1]
     });
-    console.log(result);
     return result;
 };
 

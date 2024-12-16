@@ -48,6 +48,10 @@ historyTab.addEventListener("click", async function () {
 
     historyPage.innerHTML = "<p>If you're not seeing commits, there's a high chance you're being rate limited. Try again later. (fix tbd)</p>";
 
+    if (commits.length == 0) {
+        historyPage.innerHTML = "<p>GitHub returned no commits, probably because this page hasn't been pushed to the repository yet. If it has been pushed, please create an issue to report this! Also make sure that it's been more than 15 since the last time you checked this tab.</p>";
+    };
+
     commits.forEach(commit => {
         let element = document.createElement("p");
         element.class = "commit";
@@ -64,7 +68,7 @@ async function setPage(file) {
 
     currentPage = file;
 
-    let metadata = toObject(markdown.meta)
+    let metadata = markdown.meta;
 
     document.title = metadata.title;
     title.innerText = metadata.title;
