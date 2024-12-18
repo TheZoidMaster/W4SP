@@ -1,4 +1,6 @@
 {
+    "LOCAL": true,
+
     "repo": "JaegerwaldDev/W4SP",
     "branch": "main",
     "theme": "src/themes/nest-modern.css",

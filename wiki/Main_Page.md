@@ -3,7 +3,7 @@ title: W4SP
 type: no-title
 ---
 
-<h1 align="center">Welcome to the <img src="../img/wasp_compact.png" height="32px" style="vertical-align: middle;"> demo!</h1>
+<h1 align="center">Welcome to the <img src="../img/wasp_text.png" height="32px" style="vertical-align: middle;"> demo!</h1>
 
 <table align="right">
     <tr><th colspan="2"><img src="../img/wasp.png" alt="W4SP">

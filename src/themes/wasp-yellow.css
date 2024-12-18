@@ -102,6 +102,10 @@ footer {
     color: var(--clr-dark-4);
 }
 
+#mobileNav > #burger {
+    filter: brightness(2.0);
+}
+
 /* #region *//* Markdown */
 
 blockquote {

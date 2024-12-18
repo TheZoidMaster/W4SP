@@ -8,19 +8,15 @@ let page = document.getElementById("page");
 let pages = document.getElementsByClassName("page");
 let title = document.getElementById("title");
 
-let readTab = document.getElementById("tabRead");
-let sourceTab = document.getElementById("tabSource");
-let historyTab = document.getElementById("tabHistory");
-
-let readPage = document.getElementById("pageRead");
-let sourcePage = document.getElementById("pageSource");
-let historyPage = document.getElementById("pageHistory");
-
 let markdownRaw = document.getElementById("markdownRaw");
-
 let config = getConfig();
-
 let currentPage = "wiki/Main_Page.md";
+
+let viewFileLink = document.getElementById("viewFile");
+let editFileLink = document.getElementById("editFile");
+let viewRepositoryLink = document.getElementById("viewRepository");
+
+viewRepositoryLink.href = `https://github.com/${config.repo}/tree/${config.branch}`
 
 function hidePages() {
     iterrHtml(pages, function (element) {
@@ -43,7 +39,22 @@ function setTheme(url) {
     theme.href = url;
 }
 
+let logo = document.getElementById("logo")
+logo.src = config.logo
+let logoTexts = document.querySelectorAll("img.logoText");
+logoTexts.forEach(img => {
+    img.src = config.logo_text
+})
+
 // #region Tab Logic
+
+let readTab = document.getElementById("tabRead");
+let sourceTab = document.getElementById("tabSource");
+let historyTab = document.getElementById("tabHistory");
+
+let readPage = document.getElementById("pageRead");
+let sourcePage = document.getElementById("pageSource");
+let historyPage = document.getElementById("pageHistory");
 
 readTab.addEventListener("click", function () {
     hidePages();
@@ -57,27 +68,38 @@ historyTab.addEventListener("click", async function () {
     hidePages();
     historyPage.className = "page active";
 
-    let commits = await getCommits(currentPage);
+    try {
+        let commits = await getCommits(currentPage);
 
-    historyPage.innerHTML =
-        "<p>If you're not seeing commits, there's a high chance you're being rate limited. Try again later. (fix tbd)</p>";
+        historyPage.innerHTML = "";
 
-    if (commits.length == 0) {
-        historyPage.innerHTML =
-            "<p>GitHub returned no commits, probably because this page hasn't been pushed to the repository yet. If it has been pushed, please create an issue to report this! Also make sure that it's been more than 15 since the last time you checked this tab.</p>";
+        if (commits.length == 0) {
+            historyPage.innerHTML =
+                `<blockquote class="warning"><p>GitHub returned no commits, probably because this page hasn't been pushed to the repository yet. If it has been pushed, please create an issue to report this! Also make sure that it's been more than 15 since the last time you checked this tab.</p></blockquote>`;
+        }
+
+        commits.forEach((commit) => {
+            let element = document.createElement("p");
+            element.class = "commit";
+            element.innerHTML = `${new Date(commit.date).toLocaleString(undefined, {
+                timeZoneName: "short",
+            })} | <a href="https://github.com/${config.repo}/commit/${
+                commit.sha
+            }">${commit.message}</a> - ${commit.author}`;
+
+            historyPage.appendChild(element);
+        });
+    } catch {
+        historyPage.innerHTML = `<blockquote class="error">
+    <p>Failed to load commits from GitHub. This might be due to multiple reasons:</p>
+    <ul>
+        <li>Rate limit of 60 requests per hour reached - please wait about 15 minutes to an hour before clicking on the history tab again</li>
+        <li>Misconfigured repository</li>
+        <li>Misconfigured branch</li>
+    </ul>
+    <p>Please read the documentation before reporting this as an issue!</p>
+</blockquote>`;
     }
-
-    commits.forEach((commit) => {
-        let element = document.createElement("p");
-        element.class = "commit";
-        element.innerHTML = `${new Date(commit.date).toLocaleString(undefined, {
-            timeZoneName: "short",
-        })} | <a href="https://github.com/${config.repo}/commit/${
-            commit.sha
-        }">${commit.message}</a> - ${commit.author}`;
-
-        historyPage.appendChild(element);
-    });
 });
 
 // #region Page Navigation
@@ -86,6 +108,10 @@ async function setPage(file) {
     let markdown = await getMarkdown(
         `https://raw.githubusercontent.com/${config.repo}/refs/heads/${config.branch}${file}`
     );
+    if (config.LOCAL) {
+        markdown = await getMarkdown(file);
+    }
+
     readPage.innerHTML = markdown.html;
     markdownRaw.innerText = markdown.raw;
 
@@ -95,6 +121,9 @@ async function setPage(file) {
 
     document.title = metadata.title;
     title.innerText = metadata.title;
+
+    viewFileLink.href = `https://github.com/${config.repo}/tree/${config.branch}${currentPage}`;
+    editFileLink.href = `https://github.com/${config.repo}/edit/${config.branch}${currentPage}`;
 
     switch (metadata.type) {
         case "no-title":
@@ -124,4 +153,4 @@ function fallbackHash() {
 window.onhashchange = loadPageFromHash;
 window.onload = loadPageFromHash;
 
-setTheme(getConfig().theme)
+setTheme(config.theme)

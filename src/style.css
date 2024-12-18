@@ -21,8 +21,17 @@ body {
 
     padding: 16px;
 }
-.logo {
+.logo,
+.logo > #logo {
     user-select: none;
+    width: 256px;
+    display: block;
+}
+.logo > .logoText {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
 }
 
 aside {
@@ -37,8 +46,6 @@ header {
     grid-row: 1;
 
     height: 24px;
-    display: flex;
-    flex-direction: row-reverse;
     gap: 8px;
 }
 nav {
@@ -89,6 +96,39 @@ a, page-link {
     display: block;
 }
 
-footer > span.right {
+.right {
     float: right;
+}
+
+#mobileNav {
+    user-select: none;
+    display: none;
+}
+#mobileNav img {
+    height: 32px !important;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+    #mobileNav {
+        display: inline;
+    }
+
+    body {
+        grid-template-rows: auto auto auto;
+        grid-template-columns: auto;
+    }
+
+    aside, main {
+        grid-row: 3;
+        grid-column: 1;
+    }
+    header {
+        grid-row: 1;
+        grid-column: 1;
+    }
+    nav {
+        grid-row: 2;
+        grid-column: 1;
+    }
 }

@@ -12,12 +12,10 @@
     <script src="src/page_link.js"></script>
 </head>
 <body>
-    <!-- <img src="/important/reuben.gif"> fun fact: this is actually on the dph wiki (https://datapack.wiki/important/reuben.gif)
-    https://rotatingsandwiches.wordpress.com/ -->
     <aside class="panel">
         <span class="logo">
-            <img src="img/wasp.png" draggable="false">
-            <img src="img/wasp_text.png" draggable="false" alt="W4SP">
+            <img src="img/wasp.png" draggable="false" id="logo">
+            <img src="img/wasp_text.png" draggable="false" alt="W4SP" class="logoText">
         </span>
         <hr>
         <p>
@@ -38,22 +36,17 @@
             </ul>
         </p> -->
         <hr>
-        <p>
-        get therapy 👈👈👈👈
-        <ul>
-            <li><a href="https://www.therapy-links.co.uk/">Therapy Links UK CIC</a>
-            <li><a href="https://www.betterhelp.com/">Better Help (actually shit therapy dont at me)</a></li>
-            <li><a href="https://www.therapylinkcare.com/">Therapy Link | Mental Health Help</a></li>
-            <li>actually nevermind, nexulien will just give you more mental health issues ^-^</li>
-        </ul>
-        <hr>
         <p><a href="https://github.com/JaegerwaldDev/W4SP">W4SP GitHub</a> • <a href="https://github.com/JaegerwaldDev/W4SP">Documentation</a></p>
         </p>
         <hr>
         <p>Don't like this theme? Don't worry - you can make W4SP your own! Just specify a custom theme stylesheet in the config and you can change stuff to your heart's content!</p>
     </aside>
     <header class="panel">
-        <span id="search">
+        <span id="mobileNav">
+            <img src="ico/menu-2.svg" id="burger" draggable="false">
+            <page-link href="/wiki/Main_Page"><img src="img/wasp_text.png" class="logoText" draggable="false"></page-link>
+        </span>
+        <span id="search" class="right">
             <input placeholder="Search..."></input>
             <button>Search</button>
         </span>
@@ -68,10 +61,13 @@
     <main class="panel">
         <div class="page active" id="pageRead"></div>
         <div class="page" id="pageSource">
+            <a href="#" id="viewFile">View on GitHub</a> | 
+            <a href="#" id="editFile">Edit</a> | 
+            <a id="viewRepository">View Repository</a>
             <pre><code id="markdownRaw"></code></pre>
         </div>
         <div class="page" id="pageHistory"></div>
-        <footer><span class="version">v1.0.0-alpha.1</span><span class="right">Created with <a href="https://github.com/JaegerwaldDev/W4SP"><img src="img/wasp_compact.png" style="vertical-align: middle;" height="16px" alt="W4SP"></a></span></footer>
+        <footer><span class="version">v1.0.0-alpha.2</span><span class="right">Created with <a href="https://github.com/JaegerwaldDev/W4SP"><img src="img/wasp_text.png" style="vertical-align: middle;" height="16px" alt="W4SP"></a></span></footer>
     </main>
     <script src="src/github_api.js"></script>
     <script src="src/index.js"></script>
