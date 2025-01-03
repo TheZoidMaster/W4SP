@@ -1,8 +1,8 @@
 <p>
-<img alt="W4SP Logo" src="./img/wasp_text.png" height="192px" align="left">
+<img alt="W4SP Logo" src="./img/wasp.png" height="192px" align="left">
 <br>
 <br>
-<img alt="W4SP" src="./img/wasp_compact.png"><br>
+<img alt="W4SP" src="./img/wasp_text.png"><br>
 A git-based static MediaWiki alternative
 <br>
 <br>
