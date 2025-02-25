@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Playground for fooling around",
+        "page": "Playground"
+    },
+    {
+        "title": "This file doesn't have a header!",
+        "page": "Headerless_File"
+    },
+    {
+        "title": "Markdown Syntax",
+        "page": "Markdown_Test"
+    },
+    {
+        "title": "W4SP",
+        "page": "Main_Page"
+    },
+    {
+        "title": "File in a Folder",
+        "blurb": "This file is in a folder!",
+        "page": "some_folder/File_in_a_Folder"
+    }
+]
