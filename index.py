@@ -1,20 +1,6 @@
 import os
 import re
 import json
-import subprocess
-
-
-def get_last_modified(file_path):
-    result = subprocess.run(
-        ["git", "log", "-1", "--format=%ct", file_path],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        check=True,
-        text=True
-    )
-    ts = result.stdout.strip()
-    if ts:
-        return int(ts)
 
 
 def extract_info(file_path):
@@ -60,8 +46,6 @@ def extract_info(file_path):
     page = os.path.relpath(file_path, wiki_dir).replace("\\", "/")
     page = os.path.splitext(page)[0]
     info["page"] = page
-
-    info["last_modified"] = get_last_modified(file_path)
     return info
 
 
