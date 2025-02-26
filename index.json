@@ -1,23 +1,28 @@
 [
     {
-        "title": "Playground for fooling around",
-        "page": "Playground"
-    },
-    {
         "title": "This file doesn't have a header!",
-        "page": "Headerless_File"
-    },
-    {
-        "title": "Markdown Syntax",
-        "page": "Markdown_Test"
+        "page": "Headerless_File",
+        "last_modified": 1740525529
     },
     {
         "title": "W4SP",
-        "page": "Main_Page"
+        "page": "Main_Page",
+        "last_modified": 1734559294
+    },
+    {
+        "title": "Markdown Syntax",
+        "page": "Markdown_Test",
+        "last_modified": 1734291744
+    },
+    {
+        "title": "Playground for fooling around",
+        "page": "Playground",
+        "last_modified": 1734559294
     },
     {
         "title": "File in a Folder",
         "blurb": "This file is in a folder!",
-        "page": "some_folder/File_in_a_Folder"
+        "page": "some_folder/File_in_a_Folder",
+        "last_modified": 1740525529
     }
 ]
