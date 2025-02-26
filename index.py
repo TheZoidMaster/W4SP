@@ -5,20 +5,16 @@ import subprocess
 
 
 def get_last_modified(file_path):
-    try:
-        result = subprocess.run(
-            ["git", "log", "-1", "--format=%ct", file_path],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            check=True,
-            text=True
-        )
-        ts = result.stdout.strip()
-        if ts:
-            return int(ts)
-    except Exception:
-        pass
-    return int(os.path.getmtime(file_path))
+    result = subprocess.run(
+        ["git", "log", "-1", "--format=%ct", file_path],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=True,
+        text=True
+    )
+    ts = result.stdout.strip()
+    if ts:
+        return int(ts)
 
 
 def extract_info(file_path):
